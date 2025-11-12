@@ -1,0 +1,38 @@
+این نمودار مربوط به داده‌های معروف Iris (گل زنبق) است، که سه کلاس دارد:
+setosa (سبز)
+versicolor (قرمز)
+virginica (آبی)
+در محور عمودی احتمالاً petal length و در محور افقی احتمالاً petal width قرار دارد.
+برای اجرای SVM (Support Vector Machine) و رسم خط یا مرز تصمیم (Decision Boundary) مشابه این نمودار، باید مراحل زیر را طی کنیم:
+مراحل انجام با کد (در Python)
+می‌توانیم از کتابخانه‌های scikit-learn و matplotlib استفاده کنیم
+
+from sklearn import datasets
+from sklearn.svm import SVC
+import matplotlib.pyplot as plt
+import numpy as np
+# بارگذاری دیتاست iris
+iris = datasets.load_iris()
+X = iris.data[:, [2, 3]]  # petal length, petal width
+y = iris.target
+
+# مدل SVM
+model = SVC(kernel='linear', C=1.0)
+model.fit(X, y)
+
+# محدوده‌ی رسم
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.02),
+                     np.arange(y_min, y_max, 0.02))
+
+# پیش‌بینی برای رسم ناحیه‌ها
+Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+# رسم مرز SVM
+plt.contourf(xx, yy, Z, alpha=0.3)
+plt.scatter(X[:, 0], X[:, 1], c=y, edgecolors='k')
+plt.xlabel('Petal length')
+plt.ylabel('Petal width')
+plt.title('SVM Decision Boundary for Iris Dataset')
+plt.show()
