@@ -1,0 +1,42 @@
+دیتاستی که استفاده کردیم، همان دیتاست معروف Iris است که از کتابخانه‌ی scikit-learn بارگذاری می‌شود
+from sklearn.datasets import load_iris
+iris = load_iris()
+نام کامل: Iris Flower Dataset
+ • منبع اصلی: Sir Ronald A. Fisher (1936) – مقاله‌ی “The use of multiple measurements in taxonomic problems”
+ • تعداد نمونه‌ها: 150
+ • تعداد ویژگی‌ها: 4 ویژگی عددی برای هر گل
+ 1. sepal length (cm) — طول کاسبرگ
+ 2. sepal width (cm) — عرض کاسبرگ
+ 3. petal length (cm) — طول گلبرگ
+ 4. petal width (cm) — عرض گلبرگ
+ • تعداد کلاس‌ها (گونه‌های گل): 3 گونه
+ 1. Iris setosa 2. Iris versicolor
+3. Iris virginica
+در کتابخانه‌ی scikit-learn این مجموعه داده به صورت پیش‌فرض درون خود کتابخانه قرار دارد و نیازی به دانلود ندارد
+معرفی دیتاست Iris
+Iris Dataset یکی از قدیمی‌ترین و محبوب‌ترین مجموعه داده‌ها در یادگیری ماشین و آمار است.
+این داده برای اولین بار در سال ۱۹۳۶ توسط رونالد آ. فیشر (Ronald A. Fisher) در مقاله‌ای با عنوان
+“The use of multiple measurements in taxonomic problems”
+منتشر شد.
+هدف اصلی فیشر این بود که نشان دهد چگونه می‌توان با استفاده از چند ویژگی عددی، گونه‌های مختلف گیاهان را از هم تفکیک کرد — که در آن زمان مفهومی نوآورانه بود.
+مدل‌های یادگیری ماشین معمولاً سعی می‌کنند با توجه به ۴ ویژگی بالا، گونه‌ی گل را پیش‌بینی کنند.
+بنابراین این دیتاست یکی از ساده‌ترین و بهترین نمونه‌ها برای آموزش مفاهیم طبقه‌بندی (Classification) است.
+کاربردهای آموزشی
+
+دیتاست Iris در بسیاری از آموزش‌ها و پروژه‌ها استفاده می‌شود، از جمله برای:
+ • تست الگوریتم‌های یادگیری نظیر:
+• Logistic Regression
+• Decision Tree • K-Nearest Neighbors
+• Support Vector Machine (SVM)
+ • تمرین تحلیل داده‌ها (Data Visualization)
+ • آموزش مفاهیم آماری و یادگیری ماشین مقدماتی
+منبع در scikit-learn
+در پایتون، می‌توان آن را مستقیماً از scikit-learn بارگذاری کرد
+from sklearn.datasets import load_iris
+iris = load_iris()
+print(iris.feature_names)
+print(iris.target_names)
+
+import pandas as pd
+data = pd.DataFrame(iris.data, columns=iris.feature_names)
+data['species'] = iris.target
